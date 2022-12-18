@@ -1,6 +1,11 @@
 ## PPCM - Phylogeny Pipeline CheckM based
 
-Requirements: checkm, RAxML, Mafft, Trimal, PPCM scripts
+Requirements: 
+checkm [conda install -c bioconda checkm-genome]
+RAxML [symlink], 
+Mafft [conda install -c bioconda mafft], 
+Trimal [conda install -c bioconda trimal]
+PPCM scripts [this repo]
 
 ### Steps
 
@@ -16,7 +21,7 @@ checkm analyze Markerset_Bacteria.txt input_bins out_checkm -t10
 checkm qa Markerset_Bacteria.txt out_checkm -o 9 -t 10 > out_checkm.fasta
 ```
 
-### Step 3 - make tree
+#### Step 3 - make tree
 
 ```sh
 ppcm.sh -i input_bins/ -t 5 -m Markerset_Bacteria_subset.txt -f out_checkm.fasta -o ppcm_out

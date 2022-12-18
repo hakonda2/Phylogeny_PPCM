@@ -1,4 +1,6 @@
-#/usr/bin/python3
+#!/Users/hakondahle/miniconda3/bin/python
+
+#!/export/dahlefs/apps/miniconda3/envs/checkm/bin/python3
 
 import sys
 
@@ -29,12 +31,14 @@ def get_algnlength(fileid):
 	c=0
 	file=open("trimal_mafft_fixfasta_"+fileid+".fasta",'r')
 	for line in file:	
-		if (c > 1):
+		if (c > 2):
 			continue
 		elif (">" in line):
 			c+=1
-			l=0
-			continue
+			if c==2:
+				return(l)
+			else:
+				l=0
 		else:
 			line=line.strip()
 			l+=len(line)
@@ -42,7 +46,7 @@ def get_algnlength(fileid):
 
 def populate_genomeinfo(genomeinfo, fileid):
 	algn_length=get_algnlength(fileid)
-	sys.stderr.write("LEN "+fileid+" "str(algnlength)+"\n")
+	sys.stderr.write("LEN "+fileid+" "+str(algn_length)+"\n")
 	seen_genomes=[]
 	file=open("trimal_mafft_fixfasta_"+fileid+".fasta",'r')
 	for line in file:
